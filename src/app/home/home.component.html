@@ -1,0 +1,91 @@
+<div class="m-2 p-4">
+  <h3>Alter-API</h3>
+  <p>
+    Test your API with just few clicks.
+  </p>
+  <div class="api-form mb-4">
+    <form novalidate [formGroup]="apiTest" (ngSubmit)="onSubmit(apiTest)" >
+
+      <!-- url-inputs -->
+      <div class="input-group mb-3">
+        <select class="form-select flex-grow-0 w-auto" formControlName="method">
+          <option value="GET" selected>GET</option>
+          <option value="POST">POST</option>
+          <option value="PUT">PUT</option>
+          <option value="PATCH">PATCH</option>
+          <option value="DELETE">DELETE</option>
+        </select>
+        <input class="form-control" type="url" placeholder="https://api.example.com/1/" formControlName="url" >
+        <button type="submit" class="btn btn-primary" [disabled]="!apiTest.valid">
+          Send
+        </button>
+      </div>
+
+      <!-- tabs : query,header,body -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item me-3" role="presentation">
+          <button class="nav-link active" id="query-param-tab" data-bs-toggle="tab" data-bs-target="#query-param" type="button"  role="tab" aria-controls="query-param"  aria-selected="true"> Query Params </button>
+        </li>
+        <li class="nav-item me-3" role="presentation">
+          <button class="nav-link " id="req-header-tab" data-bs-toggle="tab" data-bs-target="#req-header" type="button"  role="tab" aria-controls="req-header"  aria-selected="false"> Headers </button>
+        </li>
+        <li class="nav-item me-3" role="presentation">
+          <button class="nav-link " id="req-body-tab" data-bs-toggle="tab" data-bs-target="#req-body" type="button"  role="tab" aria-controls="req-body"  aria-selected="false"> Body </button>
+        </li>
+      </ul>
+      <!-- tab-content -->
+      <div class="tab-content p-3 border-top-0 border" >
+        <div class="tab-pane fade show active" id="query-param" role="tabpanel" aria-labelledby="query-param-tab" >
+
+          <!-- query params tab -->
+          <div class="params input-group mb-3" *ngFor="let p of queryParams;let i = index" >
+            <input class="form-control" type="text" [(ngModel)]="p.key" [ngModelOptions]="{standalone:true}" [value]="p.key" >
+            <input class="form-control" type="text" [(ngModel)]="p.value" [ngModelOptions]="{standalone:true}" [value]="p.value">
+            <button type="button" class="btn btn-outline-danger" (click)="removeParams(i,queryParams)" >Remove</button>
+          </div>
+
+          <button type="button" class="btn btn-success" (click)="addParams(queryParams)">Add Query Params</button>
+
+        </div>
+        <div class="tab-pane fade " id="req-header" role="tabpanel" aria-labelledby="req-header-tab" >
+
+          <!-- Request header tab -->
+          <div class="params input-group mb-3" *ngFor="let h of reqHeaders;let i = index" >
+            <input class="form-control" type="text" [(ngModel)]="h.key" [ngModelOptions]="{standalone:true}" [value]="h.key" >
+            <input class="form-control" type="text" [(ngModel)]="h.value" [ngModelOptions]="{standalone:true}" [value]="h.value">
+            <button type="button" class="btn btn-outline-danger" (click)="removeParams(i,reqHeaders)" >Remove</button>
+          </div>
+
+          <button type="button" class="btn btn-success" (click)="addParams(reqHeaders)">Add Headers</button>
+
+        </div>
+        <div class="tab-pane fade " id="req-body" role="tabpanel" aria-labelledby="req-body-tab" >
+          <ngx-codemirror
+            style="font-size: 17px;"
+            [options]="codeMirrorOptions"
+            [(ngModel)] = "jsonData"
+            [ngModelOptions]="{standalone:true}"
+          >
+          </ngx-codemirror>
+        </div>
+      </div>
+
+    </form>
+  </div>
+  <h3>Response</h3>
+  <div *ngIf="spinner">
+    <div class="d-flex justify-content-center">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="altApi.dataToShow">
+    <app-response [data] = "altApi.dataToShow" ></app-response>
+  </div>
+  <!-- <div *ngIf="!altApi.dataToShow">
+    <h5>Not yet</h5>
+  </div> -->
+
+
+</div>
