@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MonacoEditorConstructionOptions } from '@materia-ui/ngx-monaco-editor';
 import { AltapiService, DataDisplay } from '../altapi.service';
 
 @Component({
@@ -10,35 +11,17 @@ export class ResponseComponent implements OnInit {
 
   @Input() data!:DataDisplay;
 
-  codeMirrorOptions: any = {
-    theme: 'seti',
-    mode: 'application/ld+json',
-    lineNumbers: true,
-    lineWrapping: true,
-    foldGutter: true,
-    gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter', 'CodeMirror-lint-markers'],
-    autoCloseBrackets: true,
-    matchBrackets: true,
-    lint: true,
-    autoRefresh:true,
-    readOnly:true
-  };
-  jsonData:any;
+  editorOptions: MonacoEditorConstructionOptions = {
+		theme: 'vs-dark',
+		language: 'json',
+		roundedSelection: true,
+		autoIndent: "keep",
+    readOnly: true
+	};
+
   constructor() { }
 
   ngOnInit(): void {
-    this.jsonData = JSON.stringify({
-      "$schema": "http://json-schema.org/draft-07/schema#",
-      "type": "object",
-      "title": "Object",
-      "additionalProperties": false,
-      "properties": {
-        "string": {
-          "type": "string",
-          "title": "String"
-        }
-      }
-    },null," ");
   }
 
 

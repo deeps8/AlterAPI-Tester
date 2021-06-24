@@ -8,7 +8,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "deploy": "gh-pages -d dist/Alter-API"
+    "deploy": "gh-pages -d dist\\Alter-API"
   },
   "private": true,
   "dependencies": {
@@ -20,11 +20,11 @@
     "@angular/platform-browser": "~12.0.5",
     "@angular/platform-browser-dynamic": "~12.0.5",
     "@angular/router": "~12.0.5",
-    "@ctrl/ngx-codemirror": "^5.0.0",
+    "@materia-ui/ngx-monaco-editor": "^5.1.0",
     "axios": "^0.21.1",
     "bootstrap": "^5.0.1",
-    "codemirror": "^5.62.0",
     "gh-pages": "^3.2.3",
+    "monaco-editor": "^0.25.2",
     "pretty-bytes": "^5.6.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.1.0",

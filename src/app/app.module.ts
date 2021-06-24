@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -8,7 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { ResponseComponent } from './response/response.component';
 
 import { HttpClientModule } from '@angular/common/http';
-import { CodemirrorModule } from '@ctrl/ngx-codemirror';
+import { MonacoEditorModule, MONACO_PATH } from '@materia-ui/ngx-monaco-editor';
 
 @NgModule({
   declarations: [
@@ -22,9 +22,10 @@ import { CodemirrorModule } from '@ctrl/ngx-codemirror';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    CodemirrorModule
+    MonacoEditorModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas:[ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class AppModule { }

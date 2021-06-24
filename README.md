@@ -1,5 +1,24 @@
 # AlterAPI
-demo : [Angular CLI](https://deeps8.github.io/AlterAPI-Tester)
+Alter-API is an application where you can test your API.
+
+Quickly and easily requests directly within Alter-API. Automate manual tests and Communicate the expected behavior of an API by simulating endpoints.
+
+## Demo : [Alter-API](https://deeps8.github.io/AlterAPI-Tester)
+
+## Near future plans ✈
+I want to add some features to application which will make it much more reliable and approachable to all.
+
+- Implementing user authentication system.
+- Give user to make collection of similar API's and save API, responses and can make API documentation.
+- Convert it into an Extension.
+
+## Inspiration ⭐
+When ever I'm working with API's , I always use Postman .
+So I thought to make my own API testing app. This application might not be good as Postman but by building these types of app I learn a lot.
+
+So why not try it ! ✌
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.5.
 
 ## Development server

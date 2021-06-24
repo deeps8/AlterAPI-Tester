@@ -60,19 +60,21 @@
 
         </div>
         <div class="tab-pane fade " id="req-body" role="tabpanel" aria-labelledby="req-body-tab" >
-          <ngx-codemirror
-            style="font-size: 17px;"
-            [options]="codeMirrorOptions"
-            [(ngModel)] = "jsonData"
+          <!-- monaco editor -->
+          <ngx-monaco-editor
+            #monacoEditor
+            class="textEditorContainer"
+            [options] = "editorOptions"
+            [(ngModel)]="jsonData"
             [ngModelOptions]="{standalone:true}"
-          >
-          </ngx-codemirror>
+            >
+          </ngx-monaco-editor>
         </div>
       </div>
 
     </form>
   </div>
-  <h3>Response</h3>
+  <h3 id="response" >Response</h3>
   <div *ngIf="spinner">
     <div class="d-flex justify-content-center">
       <div class="spinner-border" role="status">

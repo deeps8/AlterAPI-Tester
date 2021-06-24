@@ -1,5 +1,6 @@
-import { Component,OnInit } from '@angular/core';
+import { Component,OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MonacoEditorComponent, MonacoEditorConstructionOptions } from '@materia-ui/ngx-monaco-editor';
 import { AltapiService } from '../altapi.service';
 
 
@@ -9,6 +10,9 @@ import { AltapiService } from '../altapi.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+
+  @ViewChild(MonacoEditorComponent, { static: false })
+  monacoComponent: MonacoEditorComponent | undefined;
 
   apiTest: FormGroup = new FormGroup({});
   queryParams:Array<any> = [{
@@ -24,18 +28,13 @@ export class HomeComponent implements OnInit {
   jsonData:any;
   spinner:boolean = false;
 
-  codeMirrorOptions: any = {
-    theme: 'seti',
-    mode: 'application/ld+json',
-    lineNumbers: true,
-    lineWrapping: true,
-    foldGutter: true,
-    gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter', 'CodeMirror-lint-markers'],
-    autoCloseBrackets: true,
-    matchBrackets: true,
-    lint: true,
-    autoRefresh:true
-  };
+  editorOptions: MonacoEditorConstructionOptions = {
+		theme: 'vs-dark',
+		language: 'json',
+		roundedSelection: true,
+		autoIndent: "keep"
+	};
+
 
   constructor(public altApi:AltapiService) {
 
@@ -55,7 +54,7 @@ export class HomeComponent implements OnInit {
 
   }
 
-  onSubmit(form:FormGroup){
+  async onSubmit(form:FormGroup){
 
     this.spinner = true;
 
@@ -81,11 +80,12 @@ export class HomeComponent implements OnInit {
     });
 
     // console.log(apiData);
-    this.altApi.requesting(apiData,this.jsonData);
-    setTimeout(() => {
-      this.spinner = false;
-    }, 500);
+    let data = await this.altApi.requesting(apiData,this.jsonData);
+    let el = document.getElementById('response');
+    el?.scrollIntoView({behavior: "smooth", block: "start", inline: "start"});
+    this.spinner = false;
   }
+
 
   removeParams(index:number,arr:Array<any>){
     arr.splice(index,1);

@@ -62,6 +62,8 @@ export class AltapiService {
         body : JSON.stringify(this.response.data,null," "),
         header : this.response.headers
       }
+
+      return true;
   }
 
 }

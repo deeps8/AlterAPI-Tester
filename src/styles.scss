@@ -1,5 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
-@import '~codemirror/lib/codemirror.css';
-@import '~codemirror/theme/seti.css';
-@import '~codemirror/addon/fold/foldgutter.css';
-@import '~codemirror/addon/lint/lint.css';
+// /* You can add global styles to this file, and also import other style files */
+// @import '~codemirror/lib/codemirror.css';
+// @import '~codemirror/theme/seti.css';
+// @import '~codemirror/addon/fold/foldgutter.css';
+// @import '~codemirror/addon/lint/lint.css';
+:root .editor-container{
+  height: 300px !important;
+  width: 100%;
+}
